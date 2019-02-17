@@ -60,7 +60,6 @@
             this.x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.x6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -381,8 +380,7 @@
             this.toolStripMenuItem1,
             this.x3ToolStripMenuItem,
             this.x4ToolStripMenuItem,
-            this.x5ToolStripMenuItem,
-            this.x6ToolStripMenuItem});
+            this.x5ToolStripMenuItem});
             this.optionsMenu.Name = "optionsMenu";
             this.optionsMenu.Size = new System.Drawing.Size(61, 20);
             this.optionsMenu.Text = "Options";
@@ -440,14 +438,6 @@
             this.x5ToolStripMenuItem.Text = "5 x 5";
             this.x5ToolStripMenuItem.Click += new System.EventHandler(this.MenuGameSizeClick);
             // 
-            // x6ToolStripMenuItem
-            // 
-            this.x6ToolStripMenuItem.CheckOnClick = true;
-            this.x6ToolStripMenuItem.Name = "x6ToolStripMenuItem";
-            this.x6ToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.x6ToolStripMenuItem.Text = "6 x 6";
-            this.x6ToolStripMenuItem.Click += new System.EventHandler(this.MenuGameSizeClick);
-            // 
             // Fifteen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -490,17 +480,16 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gameMenu;
         private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsMenu;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem easyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hardrandomMovesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem x3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x4ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x5ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem x6ToolStripMenuItem;
     }
 }

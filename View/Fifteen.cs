@@ -31,8 +31,7 @@ namespace View
             {
                 x3ToolStripMenuItem,
                 x4ToolStripMenuItem,
-                x5ToolStripMenuItem,
-                x6ToolStripMenuItem
+                x5ToolStripMenuItem
             };
         }
 
