@@ -24,15 +24,12 @@ namespace View
         {
             layoutCreators = new LayoutCreators(ButtonClick);
             var layoutCreator = layoutCreators[4];
-
             layout = layoutCreator.CreateLayout();
 
             layout.Panel.SuspendLayout();
             Controls.Add(layout.Panel);
             layout.Panel.ResumeLayout(false);
         }
-
-
 
         private void SetUpInitialParameters()
         {

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="View.Layout">
+    <Position X="0.75" Y="2.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="View.Layout.Builder">
+        <TypeIdentifier>
+          <NewMemberFileName>Layouts\Layout.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Layouts\Layout.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.356" />
+  </Class>
+  <Class Name="View.Layout3x3Creator">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Layouts\Layout3x3Creator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.Layout4x4Creator">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Layouts\Layout4x4Creator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.Layout5x5Creator">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Layouts\Layout5x5Creator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.LayoutCreatorBase">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Layouts\LayoutCreatorBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.LayoutCreators">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAACAABAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Layouts\LayoutCreators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="View.ILayout">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Layouts\ILayout.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
