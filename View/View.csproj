@@ -56,6 +56,13 @@
       <DependentUpon>Fifteen.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Layouts\ILayout.cs" />
+    <Compile Include="Layouts\LayoutCreatorBase.cs" />
+    <Compile Include="Layouts\Layout.cs" />
+    <Compile Include="Layouts\Layout3x3Creator.cs" />
+    <Compile Include="Layouts\Layout4x4Creator.cs" />
+    <Compile Include="Layouts\Layout5x5Creator.cs" />
+    <Compile Include="Layouts\LayoutCreators.cs" />
     <Compile Include="Program.cs" />
     <EmbeddedResource Include="Fifteen.resx">
       <DependentUpon>Fifteen.cs</DependentUpon>
