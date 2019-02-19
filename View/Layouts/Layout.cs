@@ -101,16 +101,15 @@ namespace View
 
             private Button CreateButton(int index, EventHandler handler)
             {
+                int size = layout.Size;
                 var indexText = index.ToString();
                 var button = new Button();
                 button.Dock = DockStyle.Fill;
                 button.Font = new Font("Mistral", 47F, FontStyle.Italic, GraphicsUnit.Point, 204);
                 button.Margin = new Padding(10);
                 button.Name = "button" + indexText;
-                button.Size = new Size(124, 113);
                 button.TabIndex = index;
                 button.Tag = indexText;
-                button.Text = "-";
                 button.UseVisualStyleBackColor = true;
                 button.Click += handler;
 

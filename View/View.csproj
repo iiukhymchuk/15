@@ -93,5 +93,15 @@
   <ItemGroup>
     <Content Include="15_Xht_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{BB201A44-DFCA-4448-9622-303467B2EFAB}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{9f567888-fd5a-4fe4-9b88-11e1cc1f888f}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

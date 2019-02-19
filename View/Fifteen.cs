@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,14 +9,17 @@ namespace View
 {
     public partial class Fifteen : Form
     {
-        LayoutCreators layoutCreators;
+        private LayoutCreators layoutCreators;
         private ILayout layout;
+        private Game game;
 
         private List<ToolStripMenuItem> MenuGameModes;
         private List<ToolStripMenuItem> MenuGameSizes;
 
         public Fifteen()
         {
+            layoutCreators = new LayoutCreators(ButtonClick);
+            game = Game.Singleton;
             SetUpLayout();
             InitializeComponent();
             SetUpInitialParameters();
@@ -22,13 +27,15 @@ namespace View
 
         private void SetUpLayout()
         {
-            layoutCreators = new LayoutCreators(ButtonClick);
             var layoutCreator = layoutCreators[4];
             layout = layoutCreator.CreateLayout();
 
             layout.Panel.SuspendLayout();
             Controls.Add(layout.Panel);
             layout.Panel.ResumeLayout(false);
+
+            var board = game.StartNewGame(4);
+            SetInitialButtonValues(board, 4);
         }
 
         private void SetUpInitialParameters()
@@ -53,7 +60,7 @@ namespace View
         private void ButtonClick(object sender, EventArgs e)
         {
             int index = Convert.ToInt16(((Button)sender).Tag);
-            layout.Buttons[index].Text = index.ToString();
+            //layout.Buttons[index].Text = index.ToString();
         }
 
         private void MenuGameModeClick(object sender, EventArgs e)
@@ -82,6 +89,21 @@ namespace View
             Controls.Add(menu);
 
             layout.Panel.ResumeLayout(false);
+
+            var board = game.StartNewGame(size);
+            SetInitialButtonValues(board, size);
+        }
+
+        private void SetInitialButtonValues(Board board, int size)
+        {
+            for (var i = 0; i < layout.Buttons.Count; i++)
+            {
+                var button = layout.Buttons[i];
+                var (x, y) = Helpers.IndexToCoords(i, size);
+                var numberToDisplay = board[x, y];
+                var text = numberToDisplay == 0 ? "" : numberToDisplay.ToString();
+                button.Text = text;
+            }
         }
     }
 }
