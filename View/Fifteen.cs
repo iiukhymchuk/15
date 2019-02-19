@@ -70,7 +70,8 @@ namespace View
 
         private void UndoClick(object sender, EventArgs e)
         {
-
+            game.Undo();
+            SetButtonValues(board);
         }
 
         private bool IsNeighbor(int index)

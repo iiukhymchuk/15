@@ -5,44 +5,35 @@ namespace Controller
 {
     class History<T>
     {
-        private readonly int maxCapacity;
-        private int currentIndex;
-        private int capacity;
-        private readonly int limit;
-        private readonly List<T> hist;
+        private readonly int capacity;
+        private readonly List<T> history;
 
-        public History(int maxCapacity)
+        public History(int capacity)
         {
-            this.maxCapacity = maxCapacity;
-            currentIndex = 0;
-            capacity = 0;
-            limit = 20;
-            hist = new List<T>(limit);
+            capacity = 5;
+            this.capacity = capacity;
+            history = new List<T>(capacity);
         }
 
         public T Pop()
         {
-            if (capacity == 0)
+            if (history.Count == 0)
                 return default(T);
-            T r = hist[currentIndex];
-            hist.RemoveAt(currentIndex);
-            currentIndex = (maxCapacity + currentIndex - 1) % maxCapacity;
-            capacity--;
-            return r;
+
+            var diff = history[history.Count - 1];
+            history.RemoveAt(history.Count - 1);
+
+            return diff;
         }
 
         public void Push(T value)
         {
-            if (capacity <= maxCapacity)
+            if (history.Count == capacity)
             {
-                capacity++;
+                history.RemoveAt(0);
             }
 
-            var index = (currentIndex) % maxCapacity;
-            if (index == hist.Count)
-                hist.Insert(index, value);
-            else
-                hist[index] = value;
+            history.Add(value);
         }
     }
 }

@@ -39,7 +39,10 @@ namespace Controller
         public void Undo()
         {
             var memento = history.Pop();
-            RevertBoardState(memento);
+            if (memento != null)
+            {
+                RevertBoardState(memento);
+            }
         }
 
         public void MoveSquare(int index)
@@ -79,12 +82,12 @@ namespace Controller
 
         private void RevertBoardState(BoardDifference diff)
         {
-            var (x, y) = diff.PositionOfSpace;
+            var (x, y) = diff.PreviousPositionOfSpace;
             var value = board[x, y];
             board[x, y] = 0;
-            board.PositionOfSpace = diff.PositionOfSpace;
+            board.PositionOfSpace = diff.PreviousPositionOfSpace;
 
-            var (_x, _y) = diff.PreviousPositionOfSpace;
+            var (_x, _y) = diff.PositionOfSpace;
             board[_x, _y] = value;
         }
     }
