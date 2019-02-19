@@ -69,20 +69,20 @@
             // startGameToolStripMenuItem
             // 
             this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.startGameToolStripMenuItem.Text = "New game";
             this.startGameToolStripMenuItem.Click += new System.EventHandler(this.MenuStartGameClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(141, 6);
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.UndoClick);
             // 
@@ -106,6 +106,7 @@
             this.easyToolStripMenuItem.CheckOnClick = true;
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
             this.easyToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.easyToolStripMenuItem.Tag = "0";
             this.easyToolStripMenuItem.Text = "Easy";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 
@@ -114,6 +115,7 @@
             this.normalToolStripMenuItem.CheckOnClick = true;
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
             this.normalToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.normalToolStripMenuItem.Tag = "1";
             this.normalToolStripMenuItem.Text = "Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 
@@ -122,6 +124,7 @@
             this.hardrandomMovesToolStripMenuItem.CheckOnClick = true;
             this.hardrandomMovesToolStripMenuItem.Name = "hardrandomMovesToolStripMenuItem";
             this.hardrandomMovesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.hardrandomMovesToolStripMenuItem.Tag = "2";
             this.hardrandomMovesToolStripMenuItem.Text = "Hard (with random moves)";
             this.hardrandomMovesToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 

@@ -4,9 +4,9 @@ namespace View
 {
     class LayoutCreators
     {
-        private LayoutCreatorBase layout3x3creator;
-        private LayoutCreatorBase layout4x4creator;
-        private LayoutCreatorBase layout5x5creator;
+        private readonly LayoutCreatorBase layout3x3creator;
+        private readonly LayoutCreatorBase layout4x4creator;
+        private readonly LayoutCreatorBase layout5x5creator;
 
         public LayoutCreators(EventHandler buttonHandler)
         {

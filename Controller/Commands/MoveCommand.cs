@@ -1,6 +1,4 @@
-﻿using Model;
-
-namespace Controller
+﻿namespace Controller
 {
     public class MoveCommand : ICommand
     {
@@ -13,9 +11,10 @@ namespace Controller
             this.game = game;
         }
 
-        public void Execute()
+        public bool Execute()
         {
             game.MoveSquare(index);
+            return true;
         }
     }
 }

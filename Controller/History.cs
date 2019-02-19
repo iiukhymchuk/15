@@ -1,5 +1,4 @@
-﻿using Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Controller
 {
@@ -34,6 +33,11 @@ namespace Controller
             }
 
             history.Add(value);
+        }
+
+        public void Clear()
+        {
+            history.Clear();
         }
     }
 }

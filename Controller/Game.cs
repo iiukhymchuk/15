@@ -1,4 +1,6 @@
 ﻿using Model;
+using System;
+using System.Linq;
 
 namespace Controller
 {
@@ -10,30 +12,45 @@ namespace Controller
         private Board board = Board.Singleton;
         private History<BoardDifference> history = new History<BoardDifference>(20);
 
-        public static Game Singleton { get; } = new Game(4);
+        private static readonly Random random = new Random();
 
-        private Game(int size)
+        public static Game Singleton { get; } = new Game(4, 1);
+
+        private Game(int size, int mode)
         {
-            StartNewGame(size);
+            StartNewGame(size, mode);
         }
 
-        public Board StartNewGame(int size)
+        public Board StartNewGame(int size, int mode)
         {
             SetSize(size);
-            return SetBoard();
+            SetBoard();
+
+            var number = 50 + 50 * 2 * mode;
+            Enumerable.Range(0, number).ToList().ForEach(x => ShuffleBoard());
+
+            return board;
         }
 
         public void ExecuteCommand(ICommand command)
         {
             var previousPositionOfSpace = board.PositionOfSpace;
-            command.Execute();
-            var memento = new BoardDifference
+            var saveToHistory = command.Execute();
+            if (saveToHistory)
             {
-                PositionOfSpace = board.PositionOfSpace,
-                PreviousPositionOfSpace = previousPositionOfSpace
-            };
+                var memento = new BoardDifference
+                {
+                    PositionOfSpace = board.PositionOfSpace,
+                    PreviousPositionOfSpace = previousPositionOfSpace
+                };
 
-            history.Push(memento);
+                history.Push(memento);
+            }
+            else
+            {
+                history.Clear();
+            }
+
         }
 
         public void Undo()
@@ -45,15 +62,23 @@ namespace Controller
             }
         }
 
-        public void MoveSquare(int index)
+        public bool MoveSquare(int index)
         {
             var (x, y) = Helpers.IndexToCoords(index, size);
+            return MoveSquareInternal(x, y);
+        }
+
+        private bool MoveSquareInternal(int x, int y)
+        {
             var value = board[x, y];
+            if (value == -1) return false; ;
             board[x, y] = 0;
 
             var (_x, _y) = board.PositionOfSpace;
             board[_x, _y] = value;
             board.PositionOfSpace = (x, y);
+
+            return true;
         }
 
         private void SetSize(int size)
@@ -64,7 +89,7 @@ namespace Controller
             spaceX = spaceY = size - 1;
         }
 
-        private Board SetBoard()
+        private void SetBoard()
         {
             board.SetSize(size);
 
@@ -76,14 +101,38 @@ namespace Controller
 
             board[spaceX, spaceY] = 0;
             board.PositionOfSpace = (spaceX, spaceY);
+        }
 
-            return board;
+        internal void ShuffleBoard()
+        {
+            int number = random.Next(4);
+            int x;
+            int y;
+            do
+            {
+                x = spaceX;
+                y = spaceY;
+                switch (number)
+                {
+                    case 0: x--; break;
+                    case 1: x++; break;
+                    case 2: y--; break;
+                    case 3: x++; break;
+                }
+                number = (number + 1) % 4;
+            }
+            while (!MoveSquareInternal(x, y));
+            spaceX = x;
+            spaceY = y;
+            board.PositionOfSpace = (x, y);
         }
 
         private void RevertBoardState(BoardDifference diff)
         {
             var (x, y) = diff.PreviousPositionOfSpace;
             var value = board[x, y];
+            if (value == -1)
+                return;
             board[x, y] = 0;
             board.PositionOfSpace = diff.PreviousPositionOfSpace;
 

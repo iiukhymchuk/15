@@ -45,6 +45,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="History.cs" />
+    <Compile Include="Commands\MoveThreeRandomCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -54,6 +55,9 @@
       <Project>{9F567888-FD5A-4FE4-9B88-11E1CC1F888F}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CommandAndSingleton.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

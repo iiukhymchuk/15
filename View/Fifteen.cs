@@ -13,6 +13,7 @@ namespace View
         private ILayout layout;
         private Game game;
         private Board board;
+        private static readonly Random random = new Random();
 
         private List<ToolStripMenuItem> MenuGameModes;
         private List<ToolStripMenuItem> MenuGameSizes;
@@ -35,7 +36,7 @@ namespace View
             Controls.Add(layout.Panel);
             layout.Panel.ResumeLayout(false);
 
-            board = game.StartNewGame(4);
+            board = game.StartNewGame(4, 1);
             SetButtonValues(board);
         }
 
@@ -64,7 +65,17 @@ namespace View
             int index = Convert.ToInt16(button.Tag);
             if (IsNeighbor(index))
             {
-                game.ExecuteCommand(new MoveCommand(index, game));
+                var selectedGameMode = MenuGameModes.First(x => x.Checked);
+                var mode = Convert.ToInt16(selectedGameMode.Tag);
+                if (random.NextDouble() < mode * 0.05)
+                {
+                    game.ExecuteCommand(new MoveThreeRandomCommand(game));
+                }
+                else
+                {
+                    game.ExecuteCommand(new MoveCommand(index, game));
+                }
+
                 SetButtonValues(board);
             }
         }
@@ -109,7 +120,10 @@ namespace View
 
             layout.Panel.ResumeLayout(false);
 
-            board = game.StartNewGame(size);
+            var selectedGameMode = MenuGameModes.First(x => x.Checked);
+            var mode = Convert.ToInt16(selectedGameMode.Tag);
+
+            board = game.StartNewGame(size, mode);
             SetButtonValues(board);
         }
 
