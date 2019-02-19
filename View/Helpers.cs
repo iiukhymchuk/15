@@ -19,5 +19,10 @@ namespace View
             var y = index / size;
             return (x, y);
         }
+
+        internal static int CoordsToIndex(int x, int y, int size)
+        {
+            return y * size + x;
+        }
     }
 }

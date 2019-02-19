@@ -3,9 +3,10 @@
     public class Board
     {
         private int size;
-        public static Board Singleton { get; set; } = new Board();
-
         private int[,] self;
+
+        public static Board Singleton { get; set; } = new Board();
+        public (int, int) PositionOfSpace { get; set; }
 
         private Board() { }
 

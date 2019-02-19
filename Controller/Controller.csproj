@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="History.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
