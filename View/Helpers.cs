@@ -12,17 +12,5 @@ namespace View
             items.Where(m => m.Name != selectedItem.Name).ToList()
                 .ForEach(m => m.Checked = false);
         }
-
-        internal static (int, int) IndexToCoords(int index, int size)
-        {
-            var x = index % size;
-            var y = index / size;
-            return (x, y);
-        }
-
-        internal static int CoordsToIndex(int x, int y, int size)
-        {
-            return y * size + x;
-        }
     }
 }

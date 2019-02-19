@@ -60,7 +60,8 @@ namespace View
 
         private void ButtonClick(object sender, EventArgs e)
         {
-            int index = Convert.ToInt16(((Button)sender).Tag);
+            var button = (Button)sender;
+            int index = Convert.ToInt16(button.Tag);
             if (IsNeighbor(index))
             {
                 game.ExecuteCommand(new MoveCommand(index, game));
@@ -76,7 +77,7 @@ namespace View
 
         private bool IsNeighbor(int index)
         {
-            var (x, y) = Helpers.IndexToCoords(index, layout.Size);
+            var (x, y) = Model.Helpers.IndexToCoords(index, layout.Size);
             var (zeroX, zeroY) = board.PositionOfSpace;
             return Math.Abs(x - zeroX) + Math.Abs(y - zeroY) == 1;
         }
@@ -117,7 +118,7 @@ namespace View
             for (var i = 0; i < layout.Buttons.Count; i++)
             {
                 var button = layout.Buttons[i];
-                var (x, y) = Helpers.IndexToCoords(i, layout.Size);
+                var (x, y) = Model.Helpers.IndexToCoords(i, layout.Size);
                 var numberToDisplay = board[x, y];
                 SetButton(button, numberToDisplay);
             }
