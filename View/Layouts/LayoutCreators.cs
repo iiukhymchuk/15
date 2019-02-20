@@ -15,7 +15,7 @@ namespace View
             layout5x5creator = new Layout5x5Creator(buttonHandler);
         }
 
-        public LayoutCreatorBase this[short index]
+        public LayoutCreatorBase this[int index]
         {
             get
             {

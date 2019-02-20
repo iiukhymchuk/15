@@ -117,7 +117,7 @@ namespace Controller
                     case 0: x--; break;
                     case 1: x++; break;
                     case 2: y--; break;
-                    case 3: x++; break;
+                    case 3: y++; break;
                 }
                 number = (number + 1) % 4;
             }
