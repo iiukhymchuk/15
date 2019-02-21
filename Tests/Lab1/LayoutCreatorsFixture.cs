@@ -46,21 +46,22 @@ namespace Tests
                 "Layout creator creates wrong number of buttons for layout.");
         }
 
-        //[TestCase(3)]
-        //[TestCase(4)]
-        //[TestCase(5)]
-        //public void LayoutCreatorCreatesLayoutWithProperPanelDimensions(int index)
-        //{
-        //    // Arange
-        //    var expectedPanelDimensions = index * index;
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        public void LayoutCreatorCreatesLayoutWithProperPanelDimensions(int index)
+        {
+            // Arange
+            var expectedPanelDimensions = index * index;
 
-        //    // Act
-        //    var actualPanelDimensions = GetLayout(index).Panel.;
+            // Act
+            var size = GetLayout(index).Panel;
+            var actualPanelDimensions = size.RowCount * size.ColumnCount;
 
-        //    // Assert
-        //    Assert.AreEqual(expectedPanelDimensions, actualPanelDimensions,
-        //        "Layout creator creates wrong panel dimensions.");
-        //}
+            // Assert
+            Assert.AreEqual(expectedPanelDimensions, actualPanelDimensions,
+                "Layout creator creates wrong panel dimensions.");
+        }
 
         [TestCase(0)]
         [TestCase(2)]
@@ -70,19 +71,19 @@ namespace Tests
         public void LayoutCreatorReturnsNullForWrongInput(int index)
         {
             // Arange
-            var expected= (ILayout)null;
+            var expected = (ILayout)null;
 
             // Act
-            var actual= GetLayout(index);
+            var actual = GetLayout(index);
 
             // Assert
-            Assert.AreEqual(expected, actual, "Layout is not null when it should be.");
+            Assert.AreEqual(expected, actual, "Layout is not null when it should be null.");
         }
 
         private ILayout GetLayout(int index)
         {
             var layoutCreator = layoutCreators[index];
-            return layoutCreator.CreateLayout();
+            return layoutCreator?.CreateLayout();
         }
     }
 }

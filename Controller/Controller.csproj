@@ -46,10 +46,9 @@
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Commands\MoveThreeRandomCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{9F567888-FD5A-4FE4-9B88-11E1CC1F888F}</Project>

@@ -89,7 +89,7 @@ namespace View
         private bool IsNeighbor(int index)
         {
             var (x, y) = Model.Helpers.IndexToCoords(index, layout.Size);
-            var (zeroX, zeroY) = board.PositionOfSpace;
+            var (zeroX, zeroY) = board.BlankPosition;
             return Math.Abs(x - zeroX) + Math.Abs(y - zeroY) == 1;
         }
 

@@ -34,13 +34,13 @@ namespace Controller
 
         public void ExecuteCommand(ICommand command)
         {
-            var previousPositionOfSpace = board.PositionOfSpace;
+            var previousPositionOfSpace = board.BlankPosition;
             var saveToHistory = command.Execute();
             if (saveToHistory)
             {
                 var memento = new BoardDifference
                 {
-                    PositionOfSpace = board.PositionOfSpace,
+                    PositionOfSpace = board.BlankPosition,
                     PreviousPositionOfSpace = previousPositionOfSpace
                 };
 
@@ -50,7 +50,6 @@ namespace Controller
             {
                 history.Clear();
             }
-
         }
 
         public void Undo()
@@ -74,9 +73,9 @@ namespace Controller
             if (value == -1) return false; ;
             board[x, y] = 0;
 
-            var (_x, _y) = board.PositionOfSpace;
+            var (_x, _y) = board.BlankPosition;
             board[_x, _y] = value;
-            board.PositionOfSpace = (x, y);
+            board.BlankPosition = (x, y);
 
             return true;
         }
@@ -92,15 +91,7 @@ namespace Controller
         private void SetBoard()
         {
             board.SetSize(size);
-
-            for (int x = 0; x < size; x++)
-                for (int y = 0; y < size; y++)
-                {
-                    board[x, y] = Helpers.CoordsToIndex(x, y, size) + 1;
-                }
-
-            board[spaceX, spaceY] = 0;
-            board.PositionOfSpace = (spaceX, spaceY);
+            board.SetWinPosition();
         }
 
         internal void ShuffleBoard()
@@ -124,7 +115,7 @@ namespace Controller
             while (!MoveSquareInternal(x, y));
             spaceX = x;
             spaceY = y;
-            board.PositionOfSpace = (x, y);
+            board.BlankPosition = (x, y);
         }
 
         private void RevertBoardState(BoardDifference diff)
@@ -134,7 +125,7 @@ namespace Controller
             if (value == -1)
                 return;
             board[x, y] = 0;
-            board.PositionOfSpace = diff.PreviousPositionOfSpace;
+            board.BlankPosition = diff.PreviousPositionOfSpace;
 
             var (_x, _y) = diff.PositionOfSpace;
             board[_x, _y] = value;

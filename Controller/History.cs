@@ -9,7 +9,6 @@ namespace Controller
 
         public History(int capacity)
         {
-            capacity = 5;
             this.capacity = capacity;
             history = new List<T>(capacity);
         }
