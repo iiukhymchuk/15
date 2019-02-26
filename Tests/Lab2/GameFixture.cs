@@ -58,16 +58,16 @@ namespace Tests
         }
 
         [Test]
-        public void Fake_OnUndoBoardIsNotChangedWhenHistoryReturnsNull()
+        public void Stub_OnUndoBoardIsNotChangedWhenHistoryReturnsNull()
         {
             // Arrange
             var spyBoard = MockRepository.GenerateStub<IBoard>();
             spyBoard.Stub(x => x.GetItem(0, 0)).Return(0);
-            var fakeHistory = MockRepository.GenerateStub<IStack<BoardDifference>>();
-            fakeHistory.Stub(x => x.Pop()).Return(null);
+            var stubHistory = MockRepository.GenerateStub<IStack<BoardDifference>>();
+            stubHistory.Stub(x => x.Pop()).Return(null);
 
             // Act
-            var game = new Game(4, 1, spyBoard, fakeHistory);
+            var game = new Game(4, 1, spyBoard, stubHistory);
             game.Undo();
 
             // Assert
@@ -76,7 +76,7 @@ namespace Tests
         }
 
         [Test]
-        public void Fake_OnUndoBoardIsChangedWhenHistoryReturnsValidValue()
+        public void Stub_OnUndoBoardIsChangedWhenHistoryReturnsValidValue()
         {
             // Arrange
             int x = 1;
@@ -87,15 +87,15 @@ namespace Tests
 
             var spyBoard = MockRepository.GenerateStub<IBoard>();
             spyBoard.Stub(b => b.GetItem(x, y)).Return(result);
-            var fakeHistory = MockRepository.GenerateStub<IStack<BoardDifference>>();
-            fakeHistory.Stub(h => h.Pop()).Return(new BoardDifference
+            var stubHistory = MockRepository.GenerateStub<IStack<BoardDifference>>();
+            stubHistory.Stub(h => h.Pop()).Return(new BoardDifference
             {
                 PositionOfSpace = (_x, _y),
                 PreviousPositionOfSpace = (x, y)
             });
 
             // Act
-            var game = new Game(4, 1, spyBoard, fakeHistory);
+            var game = new Game(4, 1, spyBoard, stubHistory);
             game.Undo();
 
             // Assert
@@ -103,18 +103,18 @@ namespace Tests
         }
 
         [Test]
-        public void Fake_OnExecuteCommandHistoryClearIsCalledWhenExecuteReturnsFalse()
+        public void Stub_OnExecuteCommandHistoryClearIsCalledWhenExecuteReturnsFalse()
         {
             // Arrange
             var spyBoard = MockRepository.GenerateStub<IBoard>();
             spyBoard.Stub(b => b.GetItem(0, 0)).Return(0);
             var spyHistory = MockRepository.GenerateStub<IStack<BoardDifference>>();
-            var fakeCommand = MockRepository.GenerateStub<ICommand>();
-            fakeCommand.Expect(x => x.Execute()).Return(false);
+            var stubCommand = MockRepository.GenerateStub<ICommand>();
+            stubCommand.Expect(x => x.Execute()).Return(false);
 
             // Act
             var game = new Game(4, 1, spyBoard, spyHistory);
-            game.ExecuteCommand(fakeCommand);
+            game.ExecuteCommand(stubCommand);
 
             // Assert
             spyHistory.AssertWasCalled(x => x.Clear(), options => options.Repeat.Once());
