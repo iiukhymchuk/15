@@ -119,5 +119,63 @@ namespace Tests
             // Assert
             spyHistory.AssertWasCalled(x => x.Clear(), options => options.Repeat.Once());
         }
+
+        [Test]
+        public void Fake_OnExecuteCommandHistoryPushIsCalledWhenExecuteReturnsTrue()
+        {
+            // Arrange
+            var spyBoard = MockRepository.GenerateStub<IBoard>();
+            spyBoard.Stub(b => b.GetItem(0, 0)).Return(0);
+            var fakeHistory = MockRepository.GenerateStub<FakeHistory<BoardDifference>>();
+            var stubCommand = MockRepository.GenerateStub<ICommand>();
+            stubCommand.Expect(x => x.Execute()).Return(true);
+
+            // Act
+            var game = new Game(4, 1, spyBoard, fakeHistory);
+            game.ExecuteCommand(stubCommand);
+
+            // Assert
+            fakeHistory.AssertWasCalled(x => x.Push(null), options => options.Repeat.Once().IgnoreArguments());
+        }
+
+        [Test]
+        public void Fake_OnExecuteCommandHistoryPushIsCalledTwiceWhenExecuteReturnsTrue()
+        {
+            // Arrange
+            var spyBoard = MockRepository.GenerateStub<IBoard>();
+            spyBoard.Stub(b => b.GetItem(0, 0)).Return(0);
+            var fakeHistory = MockRepository.GenerateStub<FakeHistory<BoardDifference>>();
+            var stubCommand = MockRepository.GenerateStub<ICommand>();
+            stubCommand.Expect(x => x.Execute()).Return(true);
+
+            // Act
+            var game = new Game(4, 1, spyBoard, fakeHistory);
+            game.ExecuteCommand(stubCommand);
+            game.ExecuteCommand(stubCommand);
+
+            // Assert
+            fakeHistory.AssertWasCalled(x => x.Push(null), options => options.Repeat.Twice().IgnoreArguments());
+        }
+
+        [Test]
+        public void Fake_OnExecuteCommandHistoryPushAndPopAreCalledWhenExecuteReturnsTrue()
+        {
+            // Arrange
+            var spyBoard = MockRepository.GenerateStub<IBoard>();
+            spyBoard.Stub(b => b.GetItem(0, 0)).Return(0);
+            var fakeHistory = MockRepository.GenerateStub<FakeHistory<BoardDifference>>();
+            var stubCommand = MockRepository.GenerateStub<ICommand>();
+            stubCommand.Expect(x => x.Execute()).Return(true);
+
+            // Act
+            var game = new Game(4, 1, spyBoard, fakeHistory);
+            game.ExecuteCommand(stubCommand);
+            game.ExecuteCommand(stubCommand);
+            game.Undo();
+
+            // Assert
+            fakeHistory.AssertWasCalled(x => x.Push(null), options => options.Repeat.Twice().IgnoreArguments());
+            fakeHistory.AssertWasCalled(x => x.Pop(), options => options.Repeat.Once());
+        }
     }
 }
