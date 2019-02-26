@@ -9,19 +9,20 @@ namespace Controller
         private int size;
         private int spaceX;
         private int spaceY;
-        private Board board = Board.Singleton;
+        private IBoard board;
         private History<BoardDifference> history = new History<BoardDifference>(20);
 
         private static readonly Random random = new Random();
 
-        public static Game Singleton { get; } = new Game(4, 1);
+        //public static Game Singleton { get; } = new Game(4, 1);
 
-        private Game(int size, int mode)
+        public Game(int size, int mode, IBoard board = null)
         {
+            this.board = board ?? Board.Singleton;
             StartNewGame(size, mode);
         }
 
-        public Board StartNewGame(int size, int modeNumber)
+        public IBoard StartNewGame(int size, int modeNumber)
         {
             SetSize(size);
             SetBoard();
@@ -69,12 +70,12 @@ namespace Controller
 
         private bool MoveSquareInternal(int x, int y)
         {
-            var value = board[x, y];
+            var value = board.GetItem(x, y);
             if (value == -1) return false; ;
-            board[x, y] = 0;
+            board.SetItem(x, y, 0);
 
             var (_x, _y) = board.BlankPosition;
-            board[_x, _y] = value;
+            board.SetItem(_x, _y, value);
             board.BlankPosition = (x, y);
 
             return true;
@@ -121,14 +122,14 @@ namespace Controller
         private void RevertBoardState(BoardDifference diff)
         {
             var (x, y) = diff.PreviousPositionOfSpace;
-            var value = board[x, y];
+            var value = board.GetItem(x, y);
             if (value == -1)
                 return;
-            board[x, y] = 0;
+            board.SetItem(x, y, 0);
             board.BlankPosition = diff.PreviousPositionOfSpace;
 
             var (_x, _y) = diff.PositionOfSpace;
-            board[_x, _y] = value;
+            board.SetItem(_x, _y, value);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace View
         private LayoutCreators layoutCreators;
         private ILayout layout;
         private Game game;
-        private Board board;
+        private IBoard board;
         private static readonly Random random = new Random();
 
         private List<ToolStripMenuItem> MenuGameModes;
@@ -21,7 +21,7 @@ namespace View
         public Fifteen()
         {
             layoutCreators = new LayoutCreators(ButtonClick);
-            game = Game.Singleton;
+            game = new Game(4, 1, Board.Singleton);
             SetUpLayout();
             InitializeComponent();
             SetUpInitialParameters();
@@ -135,13 +135,13 @@ namespace View
             SetButtonValues(board);
         }
 
-        private void SetButtonValues(Board board)
+        private void SetButtonValues(IBoard board)
         {
             for (var i = 0; i < layout.Buttons.Count; i++)
             {
                 var button = layout.Buttons[i];
                 var (x, y) = Model.Helpers.IndexToCoords(i, layout.Size);
-                var numberToDisplay = board[x, y];
+                var numberToDisplay = board.GetItem(x, y);
                 SetButton(button, numberToDisplay);
             }
         }

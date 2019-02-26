@@ -62,7 +62,7 @@ namespace Tests
             SetUpBoard(3);
 
             // Act
-            var actual = board[x, y];
+            var actual = board.GetItem(x, y);
 
             // Assert
             Assert.AreEqual(expected, actual, $"We expect recieve -1. But the result is {actual}");

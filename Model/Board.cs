@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class Board
+    public class Board: IBoard
     {
         private int size;
         private int[,] board;
@@ -12,20 +12,18 @@ namespace Model
 
         private Board() { }
 
-        public int this[int x, int y]
+        public int GetItem(int x, int y)
         {
-            get
-            {
-                if (x < 0 || x >= size) return -1;
-                if (y < 0 || y >= size) return -1;
-                return board[x, y];
-            }
-            set
-            {
-                if (x < 0 || x >= size) return;
-                if (y < 0 || y >= size) return;
-                board[x, y] = value;
-            }
+            if (x < 0 || x >= size) return -1;
+            if (y < 0 || y >= size) return -1;
+            return board[x, y];
+        }
+
+        public void SetItem(int x, int y, int value)
+        {
+            if (x < 0 || x >= size) return;
+            if (y < 0 || y >= size) return;
+            board[x, y] = value;
         }
 
         public void SetSize(int size)
