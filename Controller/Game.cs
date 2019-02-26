@@ -10,15 +10,16 @@ namespace Controller
         private int spaceX;
         private int spaceY;
         private IBoard board;
-        private History<BoardDifference> history = new History<BoardDifference>(20);
+        private IStack<BoardDifference> history;
 
         private static readonly Random random = new Random();
 
         //public static Game Singleton { get; } = new Game(4, 1);
 
-        public Game(int size, int mode, IBoard board = null)
+        public Game(int size, int mode, IBoard board = null, IStack<BoardDifference> history = null)
         {
             this.board = board ?? Board.Singleton;
+            this.history = history ?? new History<BoardDifference>(20);
             StartNewGame(size, mode);
         }
 
@@ -35,10 +36,10 @@ namespace Controller
 
         public void ExecuteCommand(ICommand command)
         {
-            var previousPositionOfSpace = board.BlankPosition;
             var saveToHistory = command.Execute();
             if (saveToHistory)
             {
+                var previousPositionOfSpace = board.BlankPosition;
                 var memento = new BoardDifference
                 {
                     PositionOfSpace = board.BlankPosition,

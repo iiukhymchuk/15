@@ -2,7 +2,7 @@
 
 namespace Controller
 {
-    class History<T>
+    class History<T> : IStack<T>
     {
         private readonly int capacity;
         private readonly List<T> history;

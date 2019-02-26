@@ -46,6 +46,7 @@
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Commands\MoveThreeRandomCommand.cs" />
+    <Compile Include="IStack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
