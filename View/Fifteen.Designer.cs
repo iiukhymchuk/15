@@ -106,7 +106,7 @@
             this.easyToolStripMenuItem.CheckOnClick = true;
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
             this.easyToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.easyToolStripMenuItem.Tag = "0";
+            this.easyToolStripMenuItem.Tag = "easy";
             this.easyToolStripMenuItem.Text = "Easy";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 
@@ -115,7 +115,7 @@
             this.normalToolStripMenuItem.CheckOnClick = true;
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
             this.normalToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.normalToolStripMenuItem.Tag = "1";
+            this.normalToolStripMenuItem.Tag = "normal";
             this.normalToolStripMenuItem.Text = "Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 
@@ -124,7 +124,7 @@
             this.hardrandomMovesToolStripMenuItem.CheckOnClick = true;
             this.hardrandomMovesToolStripMenuItem.Name = "hardrandomMovesToolStripMenuItem";
             this.hardrandomMovesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.hardrandomMovesToolStripMenuItem.Tag = "2";
+            this.hardrandomMovesToolStripMenuItem.Tag = "hard";
             this.hardrandomMovesToolStripMenuItem.Text = "Hard (with random moves)";
             this.hardrandomMovesToolStripMenuItem.Click += new System.EventHandler(this.MenuGameModeClick);
             // 
@@ -171,6 +171,7 @@
             this.Name = "Fifteen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fifteen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Fifteen_FormClosing);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);

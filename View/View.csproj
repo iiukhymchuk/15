@@ -64,6 +64,7 @@
     <Compile Include="Layouts\Layout5x5Creator.cs" />
     <Compile Include="Layouts\LayoutCreators.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="XmlManager.cs" />
     <EmbeddedResource Include="Fifteen.resx">
       <DependentUpon>Fifteen.cs</DependentUpon>
     </EmbeddedResource>

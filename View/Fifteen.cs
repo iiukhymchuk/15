@@ -29,20 +29,24 @@ namespace View
 
         private void SetUpLayout()
         {
-            var layoutCreator = layoutCreators[4];
+            var (mode, size) = XmlManager.Load();
+            var modeNumber = Helpers.GetModeNumber(mode);
+
+            var layoutCreator = layoutCreators[size];
             layout = layoutCreator.CreateLayout();
 
             layout.Panel.SuspendLayout();
             Controls.Add(layout.Panel);
             layout.Panel.ResumeLayout(false);
 
-            board = game.StartNewGame(4, 1);
+            board = game.StartNewGame(size, modeNumber);
             SetButtonValues(board);
         }
 
         private void SetUpInitialParameters()
         {
-            this.normalToolStripMenuItem.Checked = true;
+            var (mode, size) = XmlManager.Load();
+
             MenuGameModes = new List<ToolStripMenuItem>
             {
                 easyToolStripMenuItem,
@@ -50,13 +54,17 @@ namespace View
                 hardrandomMovesToolStripMenuItem
             };
 
-            this.x4ToolStripMenuItem.Checked = true;
+            var selectedMode = MenuGameModes.FirstOrDefault(x => x.Tag.ToString() == mode);
+            selectedMode.Checked = true;
+
             MenuGameSizes = new List<ToolStripMenuItem>
             {
                 x3ToolStripMenuItem,
                 x4ToolStripMenuItem,
                 x5ToolStripMenuItem
             };
+            var selectedSize = MenuGameSizes.FirstOrDefault(x => x.Tag.ToString() == size.ToString());
+            selectedSize.Checked = true;
         }
 
         private void ButtonClick(object sender, EventArgs e)
@@ -66,7 +74,7 @@ namespace View
             if (IsNeighbor(index))
             {
                 var selectedGameMode = MenuGameModes.First(x => x.Checked);
-                var mode = Convert.ToInt16(selectedGameMode.Tag);
+                var mode = Helpers.GetModeNumber(selectedGameMode.Tag.ToString());
                 if (random.NextDouble() < mode * 0.05)
                 {
                     game.ExecuteCommand(new MoveThreeRandomCommand(game));
@@ -121,7 +129,7 @@ namespace View
             layout.Panel.ResumeLayout(false);
 
             var selectedGameMode = MenuGameModes.First(x => x.Checked);
-            var mode = Convert.ToInt16(selectedGameMode.Tag);
+            var mode = Helpers.GetModeNumber(selectedGameMode.Tag.ToString());
 
             board = game.StartNewGame(size, mode);
             SetButtonValues(board);
@@ -142,6 +150,19 @@ namespace View
         {
             button.Text = value.ToString();
             button.Visible = value > 0;
+        }
+
+        private void Fifteen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var mode = MenuGameModes.FirstOrDefault(x => x.Checked)?.Tag?.ToString();
+            var size = MenuGameSizes.FirstOrDefault(x => x.Checked)?.Tag?.ToString();
+
+            var isParsed = int.TryParse(size, out int sizeInt);
+
+            if (isParsed && mode != null)
+            {
+                XmlManager.Save(mode, sizeInt);
+            }
         }
     }
 }

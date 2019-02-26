@@ -21,12 +21,12 @@ namespace Controller
             StartNewGame(size, mode);
         }
 
-        public Board StartNewGame(int size, int mode)
+        public Board StartNewGame(int size, int modeNumber)
         {
             SetSize(size);
             SetBoard();
 
-            var number = 50 + 50 * 2 * mode;
+            var number = 50 + 50 * 2 * modeNumber;
             Enumerable.Range(0, number).ToList().ForEach(x => ShuffleBoard());
 
             return board;
