@@ -2,10 +2,12 @@
 
 namespace Controller
 {
-    class History<T> : IStack<T>
+    public class History<T> : IStack<T>
     {
         private readonly int capacity;
         private readonly List<T> history;
+
+        public History() : this(20) { }
 
         public History(int capacity)
         {
@@ -13,7 +15,7 @@ namespace Controller
             history = new List<T>(capacity);
         }
 
-        public T Pop()
+        public virtual T Pop()
         {
             if (history.Count == 0)
                 return default(T);
@@ -24,7 +26,7 @@ namespace Controller
             return diff;
         }
 
-        public void Push(T value)
+        public virtual void Push(T value)
         {
             if (history.Count == capacity)
             {
@@ -34,7 +36,7 @@ namespace Controller
             history.Add(value);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             history.Clear();
         }

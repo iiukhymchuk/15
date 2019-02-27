@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class Board: IBoard
+    public class Board : IBoard
     {
         private int size;
         private int[,] board;

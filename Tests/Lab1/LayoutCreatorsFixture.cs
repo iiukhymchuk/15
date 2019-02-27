@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using View;
 
-namespace Tests
+namespace Tests.Lab1
 {
     [TestFixture]
     public class LayoutCreatorsFixture

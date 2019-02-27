@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace Tests
+namespace Tests.Lab1
 {
     [TestFixture]
     public class BoardFixture

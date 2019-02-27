@@ -1,7 +1,7 @@
 ﻿using Controller;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Lab1
 {
     [TestFixture]
     public class HistoryFixture

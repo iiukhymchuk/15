@@ -14,8 +14,6 @@ namespace Controller
 
         private static readonly Random random = new Random();
 
-        //public static Game Singleton { get; } = new Game(4, 1);
-
         public Game(int size, int mode, IBoard board = null, IStack<BoardDifference> history = null)
         {
             this.board = board ?? Board.Singleton;

@@ -3,7 +3,7 @@ using Model;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Tests
+namespace Tests.Lab2
 {
     [TestFixture]
     public class GameFixture
@@ -135,7 +135,7 @@ namespace Tests
         [TestCase(4, 1)]
         [TestCase(3, 2)]
         [TestCase(5, 0)]
-        public void Fake_OnExecuteCommandHistoryPushIsCalledWhenExecuteReturnsTrue(int size, int mode)
+        public void FakeDummy_OnExecuteCommandHistoryPushIsCalledWhenExecuteReturnsTrue(int size, int mode)
         {
             // Arrange
             var spyBoard = MockRepository.GenerateStub<IBoard>();
@@ -155,7 +155,7 @@ namespace Tests
         [TestCase(4, 1)]
         [TestCase(3, 2)]
         [TestCase(5, 0)]
-        public void Fake_OnExecuteCommandHistoryPushIsCalledTwiceWhenExecuteReturnsTrue(int size, int mode)
+        public void FakeDummy_OnExecuteCommandHistoryPushIsCalledTwiceWhenExecuteReturnsTrue(int size, int mode)
         {
             // Arrange
             var spyBoard = MockRepository.GenerateStub<IBoard>();
@@ -176,7 +176,7 @@ namespace Tests
         [TestCase(4, 1)]
         [TestCase(3, 2)]
         [TestCase(5, 0)]
-        public void Fake_OnExecuteCommandHistoryPushAndPopAreCalledWhenExecuteReturnsTrue(int size, int mode)
+        public void FakeDummy_OnExecuteCommandHistoryPushAndPopAreCalledWhenExecuteReturnsTrue(int size, int mode)
         {
             // Arrange
             var spyBoard = MockRepository.GenerateStub<IBoard>();
